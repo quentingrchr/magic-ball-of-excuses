@@ -1,0 +1,55 @@
+@font-face {
+  font-family: "Degular Regular";
+  src: url("../assets/fonts/degular-text-regular.woff2") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Degular Display";
+  src: url("../assets/fonts/degular-display-black.woff") format("woff");
+  font-weight: 700;
+  font-style: bold;
+}
+
+@font-face {
+  font-family: "Degular Display Medium";
+  src: url("../assets/fonts/degular-display-medium.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Degular Italic";
+  src: url("../assets/fonts/degular-text-italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Degular Display Light";
+  src: url("../assets/fonts/degular-display-light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Degular Light";
+  src: url("../assets/fonts/degular-light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Chee Stinked";
+  src: url("../assets/fonts/chee-stinked.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Obviously Extended Semi Bold";
+  src: url("../assets/fonts/obviously-extended-semibold.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}

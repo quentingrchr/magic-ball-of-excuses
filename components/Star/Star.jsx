@@ -50,7 +50,7 @@ const Star3 = () => {
   );
 };
 
-const Stars = [<Star1 />, <Star2 />, <Star3 />];
+const Stars = [<Star1 key={1} />, <Star2 key={2} />, <Star3 key={3} />];
 
 const StarContainer = styled(motion.div)`
   position: absolute;

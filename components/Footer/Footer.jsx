@@ -22,7 +22,11 @@ export default function Footer({ changeCursorTo }) {
           setCursorType(DEFAULT);
         }}
       >
-        <a href="https://dribbble.com/michaelccraw" target="_blank">
+        <a
+          href="https://dribbble.com/michaelccraw"
+          target="_blank"
+          rel="noreferrer"
+        >
           Design by <span>michaelccraw</span>
         </a>
       </FooterItem>
@@ -34,7 +38,11 @@ export default function Footer({ changeCursorTo }) {
           setCursorType(DEFAULT);
         }}
       >
-        <a href="https://github.com/quentingrchr" target="_blank">
+        <a
+          href="https://github.com/quentingrchr"
+          target="_blank"
+          rel="noreferrer"
+        >
           Made by <span>@quentingrchr</span>
         </a>
       </FooterItem>

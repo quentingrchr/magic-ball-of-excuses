@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { Reveal } from "./RevealTexts.style";
 

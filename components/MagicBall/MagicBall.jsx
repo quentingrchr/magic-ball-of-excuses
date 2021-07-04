@@ -12,6 +12,7 @@ import {
   RevealContainer,
   Shadow,
 } from "./MagicBall.style";
+import { RELOAD, DEFAULT } from "../Cursor/Cursor.type";
 import Stars from "../Stars/Stars";
 import RevealTexts from "../RevealsTexts/RevealTexts";
 import { dataStarsReveal, apologies, excuses } from "./MagicBall.data";
@@ -67,6 +68,7 @@ export default function MagicBall({
   finalSection,
   handleMouseEnter,
   handleMouseLeave,
+  setCursorType,
 }) {
   const [cursorX, setCursorX] = useState(0);
   const [translateRatio, setTranslateRatio] = useState(0);
@@ -118,11 +120,14 @@ export default function MagicBall({
 
   useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove);
+
+    // Init data for reveal
     let data = [];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 30; i++) {
       let text = getRevealText();
       data.push(text);
     }
+    data.push("No more excuses, reload the page");
     revealTextsRef.current = data;
 
     return () => {
@@ -202,6 +207,12 @@ export default function MagicBall({
           variants={variantsReveal}
           onClick={() => {
             setIndexText(indexText + 1);
+          }}
+          onMouseEnter={() => {
+            finalSection && setCursorType(RELOAD);
+          }}
+          onMouseLeave={() => {
+            setCursorType(DEFAULT);
           }}
         >
           {revealTextsRef.current && (

@@ -3,8 +3,15 @@ import { useMotionValue } from "framer-motion";
 
 import { Container, Dot, IconContainer } from "./Cursor.style";
 
-import { ExternalLink, Grab, Github, Dribbble } from "../Icons";
-import { DEFAULT, GRAB, DRIBBBLE, GITHUB, EXTERNAL_LINK } from "./Cursor.type";
+import { ExternalLink, Grab, Github, Dribbble, Reload } from "../Icons";
+import {
+  DEFAULT,
+  GRAB,
+  DRIBBBLE,
+  GITHUB,
+  EXTERNAL_LINK,
+  RELOAD,
+} from "./Cursor.type";
 
 const motionProps = {
   initial: {
@@ -46,6 +53,13 @@ const IconSwitcher = (type) => {
       return (
         <IconContainer {...motionProps}>
           <Dribbble />
+        </IconContainer>
+      );
+
+    case RELOAD:
+      return (
+        <IconContainer {...motionProps}>
+          <Reload />
         </IconContainer>
       );
 

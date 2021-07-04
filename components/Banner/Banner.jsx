@@ -37,7 +37,7 @@ const shakeVariants = {
   visible: { scaleY: 1, translateY: "-50vh" },
 };
 
-export default function Banner({ setCursorType, isLoading, lockScroll }) {
+export default function Banner({ setCursorType, isLoading }) {
   const [shakeSection, setShakeSection] = useState(false);
   const [finalSection, setFinalSection] = useState(false);
   const [ballIsHovered, setBallIsHovered] = useState(false);
@@ -117,6 +117,7 @@ export default function Banner({ setCursorType, isLoading, lockScroll }) {
             <InnerContent>
               {!isLoading && !finalSection && <Stars data={dataStarsTop} />}
               <MagicBall
+                setCursorType={setCursorType}
                 isDraggable={shakeSection}
                 onDragEnd={onDragEnd}
                 finalSection={finalSection}

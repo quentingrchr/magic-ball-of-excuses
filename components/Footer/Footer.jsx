@@ -1,52 +1,38 @@
-import styled from "styled-components";
-import { motion } from "framer-motion";
-import { opacify } from "polished";
+import { useEffect, useState } from "react";
 
-const FooterContainer = styled(motion.footer)`
-  width: 100%;
-  margin: auto;
-  max-width: 1900px;
-  font-family: "Degular Display Light";
-  text-transform: uppercase;
-  font-size: 2rem;
-  position: fixed;
-  z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  color: ${(p) => p.theme.colors.text};
-  bottom: 0;
-  padding: 5rem 5vw;
-`;
-const FooterItem = styled.div`
-  a {
-    display: block;
-    padding: 2rem;
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
+import { FooterContainer, FooterItem } from "./Footer.style";
+import { DRIBBBLE, GITHUB, DEFAULT } from "../Cursor/Cursor.type";
 
-    span {
-      position: relative;
-    }
-  }
-`;
-export default function Footer({ handleMouseEnterLink, handleMouseLeaveLink }) {
+export default function Footer({ changeCursorTo }) {
+  const [cursorType, setCursorType] = useState("default");
+
+  useEffect(() => {
+    changeCursorTo(cursorType);
+  }, [cursorType]);
   return (
     <FooterContainer
       animate={{ opacity: [0, 1] }}
       transition={{ duration: 0.3, delay: 2.7 }}
     >
       <FooterItem
-        onMouseEnter={handleMouseEnterLink}
-        onMouseLeave={handleMouseLeaveLink}
+        onMouseEnter={() => {
+          setCursorType(DRIBBBLE);
+        }}
+        onMouseLeave={() => {
+          setCursorType(DEFAULT);
+        }}
       >
         <a href="https://dribbble.com/michaelccraw" target="_blank">
-          Inspired by <span>michaelccraw</span>
+          Design by <span>michaelccraw</span>
         </a>
       </FooterItem>
       <FooterItem
-        onMouseEnter={handleMouseEnterLink}
-        onMouseLeave={handleMouseLeaveLink}
+        onMouseEnter={() => {
+          setCursorType(GITHUB);
+        }}
+        onMouseLeave={() => {
+          setCursorType(DEFAULT);
+        }}
       >
         <a href="https://github.com/quentingrchr" target="_blank">
           Made by <span>@quentingrchr</span>

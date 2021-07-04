@@ -1,28 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useMotionValue, motion, AnimatePresence } from "framer-motion";
-import styled from "styled-components";
+import { useMotionValue } from "framer-motion";
 
 import { Container, Dot, IconContainer } from "./Cursor.style";
-import GrabIcon from "../GrabIcon/GrabIcon";
-import ExternalLinkIcon from "../ExternalLinkIcon/ExternalLinkIcon";
 
-const IconSwitcher = (type) => {
-  switch (type) {
-    case "grab":
-      return <GrabIcon />;
-
-      break;
-
-    case "external_link":
-      return <ExternalLinkIcon />;
-
-      break;
-
-    default:
-      return null;
-      break;
-  }
-};
+import { ExternalLink, Grab, Github, Dribbble } from "../Icons";
+import { DEFAULT, GRAB, DRIBBBLE, GITHUB, EXTERNAL_LINK } from "./Cursor.type";
 
 const motionProps = {
   initial: {
@@ -35,6 +17,42 @@ const motionProps = {
     opacity: 0,
   },
   transition: { duration: 0.2 },
+};
+
+const IconSwitcher = (type) => {
+  console.log(type);
+  switch (type) {
+    case GRAB:
+      return (
+        <IconContainer {...motionProps}>
+          <Grab />
+        </IconContainer>
+      );
+
+    case EXTERNAL_LINK:
+      return (
+        <IconContainer {...motionProps}>
+          <ExternalLink />
+        </IconContainer>
+      );
+
+    case GITHUB:
+      return (
+        <IconContainer {...motionProps}>
+          <Github />
+        </IconContainer>
+      );
+
+    case DRIBBBLE:
+      return (
+        <IconContainer {...motionProps}>
+          <Dribbble />
+        </IconContainer>
+      );
+
+    default:
+      return <Dot {...motionProps} />;
+  }
 };
 
 export default function Cursor({ cursorType }) {
@@ -61,12 +79,10 @@ export default function Cursor({ cursorType }) {
 
   return (
     <Container key={cursorType} ref={cursorRef} style={{ x, y }}>
-      {cursorType === "default" ? (
+      {cursorType === DEFAULT ? (
         <Dot {...motionProps} />
       ) : (
-        <IconContainer {...motionProps}>
-          {IconSwitcher(cursorType)}
-        </IconContainer>
+        IconSwitcher(cursorType)
       )}
     </Container>
   );

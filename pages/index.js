@@ -17,18 +17,18 @@ const Page = styled.div`
 export default function Home() {
   const [cursorType, setCursorType] = useState("default");
 
+  const changeCursorTo = (type) => {
+    setCursorType(type);
+  };
+
   return (
     <Page>
+      <Head>
+        <title>Magical Ball of Excuses</title>
+      </Head>
       <Cursor cursorType={cursorType} />
       <BannerWithNoSSR setCursorType={setCursorType} />
-      <Footer
-        handleMouseEnterLink={() => {
-          setCursorType("external_link");
-        }}
-        handleMouseLeaveLink={() => {
-          setCursorType("default");
-        }}
-      />
+      <Footer changeCursorTo={changeCursorTo} />
     </Page>
   );
 }

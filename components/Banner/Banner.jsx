@@ -16,7 +16,7 @@ import TextLayout from "../TextLayout/TextLayout";
 import TextCircle from "../TextCircle/TextCircle";
 import MovingText from "../MovingText/MovingText";
 import CtaScroll from "../CtaScroll/CtaScroll";
-import Cursor from "../Cursor/Cursor";
+import { GRAB, DEFAULT } from "../Cursor/Cursor.type";
 import { useDisableScroll } from "../../hooks/useDisableScroll";
 
 const Description = () => {
@@ -69,9 +69,9 @@ export default function Banner({ setCursorType }) {
 
   useEffect(() => {
     if (ballIsHovered && shakeSection && !finalSection) {
-      setCursorType("grab");
+      setCursorType(GRAB);
     } else {
-      setCursorType("default");
+      setCursorType(DEFAULT);
     }
     if (finalSection) {
       disableScroll();

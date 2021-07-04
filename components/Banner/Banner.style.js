@@ -5,7 +5,6 @@ import { lighten } from "polished";
 export const Top = styled.div`
   height: 100vh;
   background-color: ${(p) => lighten(0.1, p.theme.colors.text)};
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;

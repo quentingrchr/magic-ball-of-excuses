@@ -1,4 +1,4 @@
-export default function GrabIcon() {
+export default function Grab() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

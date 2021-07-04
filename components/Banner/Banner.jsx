@@ -18,7 +18,6 @@ import TextCircle from "../TextCircle/TextCircle";
 import MovingText from "../MovingText/MovingText";
 import CtaScroll from "../CtaScroll/CtaScroll";
 import { GRAB, DEFAULT } from "../Cursor/Cursor.type";
-
 const Description = () => {
   return (
     <p>
@@ -35,7 +34,7 @@ const Instructions = ({ finalSection }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <motion.p>Here's our suggested excuse : </motion.p>
+      <motion.p>Here's our suggested excuse :</motion.p>
     </AnimatePresence>
   ) : (
     <AnimatePresence

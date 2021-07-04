@@ -16,6 +16,7 @@ import TextLayout from "../TextLayout/TextLayout";
 import TextCircle from "../TextCircle/TextCircle";
 import MovingText from "../MovingText/MovingText";
 import CtaScroll from "../CtaScroll/CtaScroll";
+import Cursor from "../Cursor/Cursor";
 import { useDisableScroll } from "../../hooks/useDisableScroll";
 
 const Description = () => {
@@ -31,9 +32,11 @@ const Instructions = () => {
   return <p>Give it a good shake and get an iron-clad excuse.</p>;
 };
 
-export default function Banner() {
+export default function Banner({ setCursorType }) {
   const [shakeSection, setShakeSection] = useState(false);
   const [finalSection, setFinalSection] = useState(false);
+  const [ballIsHovered, setBallIsHovered] = useState(false);
+
   const [shakeOffsetTop, setShakeOffsetTop] = useState(null);
   const [dragX, setDragX] = useState(null);
   const [disableScroll, enableScroll] = useDisableScroll();
@@ -65,10 +68,16 @@ export default function Banner() {
   }, []);
 
   useEffect(() => {
+    if (ballIsHovered && shakeSection && !finalSection) {
+      setCursorType("grab");
+    } else {
+      setCursorType("default");
+    }
     if (finalSection) {
       disableScroll();
     }
-  }, [finalSection]);
+  }, [finalSection, ballIsHovered, shakeSection]);
+
   return (
     <Container>
       <TextCircle topText="Magical Ball" bottomText="Of excuses" />
@@ -96,6 +105,12 @@ export default function Banner() {
                 onDragEnd={onDragEnd}
                 finalSection={finalSection}
                 onDrag={onDrag}
+                handleMouseEnter={() => {
+                  setBallIsHovered(true);
+                }}
+                handleMouseLeave={() => {
+                  setBallIsHovered(false);
+                }}
               />
             </InnerContent>
           </InnerCircle>

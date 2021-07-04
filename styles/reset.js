@@ -48,8 +48,15 @@ export default createGlobalStyle`
   *{
     box-sizing: border-box;
   }
+  html,body{
+    height: fit-content;
+  }
 
   html{
+    cursor: none;
+    a{
+      cursor: none !important;
+    }
     font-size: 10px;
     @media screen and (max-width: 1450px){
       font-size: 6px;

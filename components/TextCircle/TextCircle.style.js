@@ -10,6 +10,7 @@ export const Container = styled(motion.div)`
   transform: translate(-50%, -50%);
   z-index: 8;
   border-radius: 50%;
+  pointer-events: none;
 `;
 
 const Text = styled.div`

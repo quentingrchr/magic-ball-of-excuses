@@ -177,8 +177,8 @@ export default function CtaScroll() {
             d="M110.781 46.0462L112.125 49.7392L115.874 48.3746L114.53 44.6816L110.781 46.0462Z"
             fill="#EC8487"
           />
-          <circle cx="150" cy="150" r="87" stroke="#EC8487" stroke-width="2" />
-          <circle cx="150" cy="150" r="137" stroke="#EC8487" stroke-width="2" />
+          <circle cx="150" cy="150" r="87" stroke="#EC8487" strokeWidth="2" />
+          <circle cx="150" cy="150" r="137" stroke="#EC8487" strokeWidth="2" />
         </svg>
       </Circle>
     </Container>

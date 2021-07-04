@@ -11,6 +11,7 @@ export const Text = styled.span`
 `;
 export const TextContainer = styled(motion.p)`
   display: flex;
+  pointer-events: none;
 `;
 
 export const TranslatableContainer = styled(motion.div)``;

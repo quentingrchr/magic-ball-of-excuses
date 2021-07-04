@@ -19,6 +19,8 @@ const FooterContainer = styled(motion.footer)`
 `;
 const FooterItem = styled.div`
   a {
+    display: block;
+    padding: 2rem;
     text-decoration: none;
     color: inherit;
     cursor: pointer;
@@ -28,19 +30,25 @@ const FooterItem = styled.div`
     }
   }
 `;
-export default function Footer() {
+export default function Footer({ handleMouseEnterLink, handleMouseLeaveLink }) {
   return (
     <FooterContainer
       animate={{ opacity: [0, 1] }}
       transition={{ duration: 0.3, delay: 2.7 }}
     >
-      <FooterItem>
-        <a href="https://dribbble.com/michaelccraw">
+      <FooterItem
+        onMouseEnter={handleMouseEnterLink}
+        onMouseLeave={handleMouseLeaveLink}
+      >
+        <a href="https://dribbble.com/michaelccraw" target="_blank">
           Inspired by <span>michaelccraw</span>
         </a>
       </FooterItem>
-      <FooterItem>
-        <a href="https://github.com/quentingrchr">
+      <FooterItem
+        onMouseEnter={handleMouseEnterLink}
+        onMouseLeave={handleMouseLeaveLink}
+      >
+        <a href="https://github.com/quentingrchr" target="_blank">
           Made by <span>@quentingrchr</span>
         </a>
       </FooterItem>

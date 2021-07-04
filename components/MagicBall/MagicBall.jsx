@@ -65,6 +65,8 @@ export default function MagicBall({
   onDragEnd,
   onDrag,
   finalSection,
+  handleMouseEnter,
+  handleMouseLeave,
 }) {
   const [cursorX, setCursorX] = useState(0);
   const [translateRatio, setTranslateRatio] = useState(0);
@@ -126,7 +128,10 @@ export default function MagicBall({
   }, [cursorX]);
 
   return (
-    <BallContainer>
+    <BallContainer
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <Ball
         animate={finalSection ? "reveal" : "iddle"}
         variants={variantsBall}

@@ -66,8 +66,12 @@ export default createGlobalStyle`
       font-size: 5px;
     }
 
-    @media screen and (max-width: 100px){
-      font-size: 4px;
+    @media screen and (max-width: 1000px){
+      font-size: 3px;
     }
+    @media screen and (max-width: 600px){
+      font-size: 2px;
+    }
+
   }
 `;

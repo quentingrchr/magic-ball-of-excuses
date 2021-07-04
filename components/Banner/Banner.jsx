@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Waypoint } from "react-waypoint";
 import disableScroll from "disable-scroll";
-
+import { motion, AnimatePresence } from "framer-motion";
 import { dataStarsTop } from "./Banner.data";
 import {
   Container,
@@ -28,8 +28,24 @@ const Description = () => {
   );
 };
 
-const Instructions = () => {
-  return <p>Give it a good shake and get an iron-clad excuse.</p>;
+const Instructions = ({ finalSection }) => {
+  return finalSection ? (
+    <AnimatePresence
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <motion.p>Here's our suggested excuse : </motion.p>
+    </AnimatePresence>
+  ) : (
+    <AnimatePresence
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <motion.p>Give it a good shake and get an iron-clad excuse.</motion.p>
+    </AnimatePresence>
+  );
 };
 
 const shakeVariants = {
@@ -85,31 +101,28 @@ export default function Banner({ setCursorType, isLoading }) {
 
   return (
     <Container>
-      {!finalSection && (
-        <>
+      <>
+        {!finalSection && (
           <TextCircle
             visible={!isLoading}
             topText="Magical Ball"
             bottomText="Of excuses"
           />
-          {!isLoading && (
-            <TextLayout
-              appearingAnimationBot={true}
-              topIsVisible={shakeSection && !finalSection}
-            >
-              <TextLayout.Top>
-                <Instructions />
-              </TextLayout.Top>
-              <TextLayout.Left>
-                <Description />
-              </TextLayout.Left>
-              <TextLayout.Right>
-                <CtaScroll />
-              </TextLayout.Right>
-            </TextLayout>
-          )}
-        </>
-      )}
+        )}
+        {!isLoading && (
+          <TextLayout appearingAnimationBot={true} topIsVisible={shakeSection}>
+            <TextLayout.Top>
+              <Instructions finalSection={finalSection} />
+            </TextLayout.Top>
+            <TextLayout.Left>
+              <Description />
+            </TextLayout.Left>
+            <TextLayout.Right>
+              <CtaScroll />
+            </TextLayout.Right>
+          </TextLayout>
+        )}
+      </>
 
       <Top>
         <OuterCircle>

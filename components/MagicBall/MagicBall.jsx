@@ -228,7 +228,7 @@ export default function MagicBall({
       <Shadow
         animate={{
           width: ["15rem", "20rem", "15rem"],
-          opacity: [1, 0.8, 1],
+          opacity: [0.8, 1, 0.8],
         }}
         transition={{
           duration: 4,

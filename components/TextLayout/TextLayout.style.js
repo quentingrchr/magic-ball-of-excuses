@@ -8,6 +8,7 @@ export const Container = styled(motion.div)`
   position: fixed;
   z-index: 7;
   padding: 10rem 5vw;
+  padding-top: 0rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,7 +27,7 @@ export const TopEl = styled(motion.div)`
   padding: 10rem 5rem;
   display: flex;
   justify-content: center;
-  opacity: 0;
+  opacity: 1;
 `;
 
 const BottomCol = styled(motion.div)`

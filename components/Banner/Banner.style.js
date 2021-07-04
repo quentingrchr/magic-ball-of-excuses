@@ -11,7 +11,7 @@ export const Top = styled.div`
 `;
 
 export const ShakeBlock = styled(motion.div)`
-  height: 100vh;
+  height: 150vh;
 
   background-color: ${(p) => p.theme.colors.green};
   transform-origin: bottom;
@@ -48,6 +48,7 @@ export const InnerContent = styled.div`
 `;
 
 export const Container = styled.section`
-  height: 100vh;
+  height: 200vh;
   width: 100vw;
+  overflow: hidden;
 `;

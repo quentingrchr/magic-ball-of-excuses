@@ -188,6 +188,9 @@ export default function MagicBall({
 
         {/* Reveal Final Section */}
         <RevealContainer
+          initial={{
+            y: 400,
+          }}
           animate={finalSection ? "visible" : "hidden"}
           variants={variantsReveal}
         >

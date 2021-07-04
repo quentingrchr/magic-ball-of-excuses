@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Waypoint } from "react-waypoint";
+import disableScroll from "disable-scroll";
 
 import { dataStarsTop } from "./Banner.data";
 import {
@@ -17,7 +18,6 @@ import TextCircle from "../TextCircle/TextCircle";
 import MovingText from "../MovingText/MovingText";
 import CtaScroll from "../CtaScroll/CtaScroll";
 import { GRAB, DEFAULT } from "../Cursor/Cursor.type";
-import { useDisableScroll } from "../../hooks/useDisableScroll";
 
 const Description = () => {
   return (
@@ -32,14 +32,18 @@ const Instructions = () => {
   return <p>Give it a good shake and get an iron-clad excuse.</p>;
 };
 
-export default function Banner({ setCursorType }) {
+const shakeVariants = {
+  hidden: { scaleY: 0, translateY: "-50vh" },
+  visible: { scaleY: 1, translateY: "-50vh" },
+};
+
+export default function Banner({ setCursorType, isLoading, lockScroll }) {
   const [shakeSection, setShakeSection] = useState(false);
   const [finalSection, setFinalSection] = useState(false);
   const [ballIsHovered, setBallIsHovered] = useState(false);
 
   const [shakeOffsetTop, setShakeOffsetTop] = useState(null);
   const [dragX, setDragX] = useState(null);
-  const [disableScroll, enableScroll] = useDisableScroll();
 
   const shakeRef = useRef(null);
 
@@ -73,33 +77,45 @@ export default function Banner({ setCursorType }) {
     } else {
       setCursorType(DEFAULT);
     }
+
     if (finalSection) {
-      disableScroll();
+      disableScroll.on();
     }
   }, [finalSection, ballIsHovered, shakeSection]);
 
   return (
     <Container>
-      <TextCircle topText="Magical Ball" bottomText="Of excuses" />
-      <TextLayout
-        appearingAnimationBot={true}
-        topIsVisible={shakeSection && !finalSection}
-      >
-        <TextLayout.Top>
-          <Instructions />
-        </TextLayout.Top>
-        <TextLayout.Left>
-          <Description />
-        </TextLayout.Left>
-        <TextLayout.Right>
-          <CtaScroll />
-        </TextLayout.Right>
-      </TextLayout>
+      {!finalSection && (
+        <>
+          <TextCircle
+            visible={!isLoading}
+            topText="Magical Ball"
+            bottomText="Of excuses"
+          />
+          {!isLoading && (
+            <TextLayout
+              appearingAnimationBot={true}
+              topIsVisible={shakeSection && !finalSection}
+            >
+              <TextLayout.Top>
+                <Instructions />
+              </TextLayout.Top>
+              <TextLayout.Left>
+                <Description />
+              </TextLayout.Left>
+              <TextLayout.Right>
+                <CtaScroll />
+              </TextLayout.Right>
+            </TextLayout>
+          )}
+        </>
+      )}
+
       <Top>
         <OuterCircle>
           <InnerCircle>
             <InnerContent>
-              <Stars data={dataStarsTop} />
+              {!isLoading && !finalSection && <Stars data={dataStarsTop} />}
               <MagicBall
                 isDraggable={shakeSection}
                 onDragEnd={onDragEnd}
@@ -124,12 +140,12 @@ export default function Banner({ setCursorType }) {
       >
         <ShakeBlock
           ref={shakeRef}
-          animate={{ scaleY: [0, 1], translateY: "-50vh" }}
+          variants={shakeVariants}
+          animate={isLoading ? "hidden" : "visible"}
           transition={{ duration: 1 }}
         ></ShakeBlock>
       </Waypoint>
       <MovingText dragX={dragX} isVisible={shakeSection && !finalSection} />
-      {shakeOffsetTop && <TextLayout></TextLayout>}
     </Container>
   );
 }

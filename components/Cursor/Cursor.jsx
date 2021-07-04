@@ -20,7 +20,6 @@ const motionProps = {
 };
 
 const IconSwitcher = (type) => {
-  console.log(type);
   switch (type) {
     case GRAB:
       return (

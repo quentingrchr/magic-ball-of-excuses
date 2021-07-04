@@ -28,13 +28,15 @@ const Description = () => {
 };
 
 const Instructions = ({ finalSection }) => {
+  const finalInstruction = "Here's our suggested excuse :";
+  const firstInstruction = "Give it a good shake and get an iron-clad excuse.";
   return finalSection ? (
     <AnimatePresence
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <motion.p>Here's our suggested excuse :</motion.p>
+      <motion.p>{finalInstruction}</motion.p>
     </AnimatePresence>
   ) : (
     <AnimatePresence
@@ -42,7 +44,7 @@ const Instructions = ({ finalSection }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <motion.p>Give it a good shake and get an iron-clad excuse.</motion.p>
+      <motion.p>{firstInstruction}</motion.p>
     </AnimatePresence>
   );
 };

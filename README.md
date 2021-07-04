@@ -12,7 +12,7 @@ The design and challenge for the front-end integration really inspired.
 
 ## How
 
-Based a NextJS starter project, I used styled-components and framer-motion for the style.
+Based on a NextJS starter project, I used styled-components and framer-motion for the style.
 
 Dependencies :
 

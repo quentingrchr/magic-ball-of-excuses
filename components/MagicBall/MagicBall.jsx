@@ -7,13 +7,13 @@ import {
   LightGradient,
   Number,
   NumberContainer,
-  Reveal,
   RevealGradient,
   RevealStars,
   RevealContainer,
   Shadow,
 } from "./MagicBall.style";
 import Stars from "../Stars/Stars";
+import RevealTexts from "../RevealsTexts/RevealTexts";
 import { dataStarsReveal, apologies, excuses } from "./MagicBall.data";
 import getRandomItemInArray from "../../utils/getRandomItemInArray";
 
@@ -71,7 +71,8 @@ export default function MagicBall({
   const [cursorX, setCursorX] = useState(0);
   const [translateRatio, setTranslateRatio] = useState(0);
   const [scrollRatio] = useScrollRatio(window.innerHeight, 0, true, 2);
-  const revealTextRef = useRef(null);
+  const [indexText, setIndexText] = useState(0);
+  const revealTextsRef = useRef(null);
 
   const handleMouseMove = (e) => {
     setCursorX(e.clientX);
@@ -117,7 +118,13 @@ export default function MagicBall({
 
   useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove);
-    revealTextRef.current = getRevealText();
+    let data = [];
+    for (let i = 0; i < 20; i++) {
+      let text = getRevealText();
+      data.push(text);
+    }
+    revealTextsRef.current = data;
+
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
@@ -193,8 +200,14 @@ export default function MagicBall({
           }}
           animate={finalSection ? "visible" : "hidden"}
           variants={variantsReveal}
+          onClick={() => {
+            setIndexText(indexText + 1);
+          }}
         >
-          <Reveal>{revealTextRef.current}</Reveal>
+          {revealTextsRef.current && (
+            <RevealTexts texts={revealTextsRef.current} index={indexText} />
+          )}
+
           <RevealStars>
             {finalSection && <Stars data={dataStarsReveal} />}
           </RevealStars>

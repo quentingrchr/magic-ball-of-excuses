@@ -49,7 +49,7 @@ const excuses = [
 
 const apologies = [
   "Sorry, ",
-  "Woud be cool but ",
+  "Would be cool but ",
   "I'll take a rain check, ",
   "Impossible, ",
 ];

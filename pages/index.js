@@ -7,6 +7,7 @@ import disableScroll from "disable-scroll";
 import Footer from "../components/Footer/Footer";
 import Cursor from "../components/Cursor/Cursor";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
+import WrongDeviceScreen from "../components/WrongDeviceScreen/WrongDeviceScreen";
 
 const BannerWithNoSSR = dynamic(() => import("../components/Banner/Banner"), {
   ssr: false,
@@ -19,13 +20,39 @@ const Page = styled.div`
 export default function Home() {
   const [cursorType, setCursorType] = useState("default");
   const [isLoading, setIsLoading] = useState(false);
+  const [isLandscape, setIsLandscape] = useState(null);
+
+  useEffect(() => {}, []);
 
   const changeCursorTo = (type) => {
     setCursorType(type);
   };
 
+  const initIsLandscape = () => {
+    const sizes = {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
+    if (sizes.width < sizes.height) {
+      setIsLandscape(false);
+    } else {
+      setIsLandscape(true);
+    }
+  };
+
   useEffect(() => {
+    // Init isLandscape state
+
+    initIsLandscape();
+
+    window.addEventListener("resize", initIsLandscape);
+
+    // Init IsLoading state
     setIsLoading(true);
+
+    return () => {
+      window.removeEventListener("resize", initIsLandscape);
+    };
   }, []);
 
   useEffect(() => {
@@ -36,11 +63,8 @@ export default function Home() {
     }
   }, [isLoading]);
 
-  return (
-    <Page>
-      <Head>
-        <title>Magical Ball of Excuses</title>
-      </Head>
+  const MainLayout = () => {
+    return (
       <>
         <LoadingScreen
           completeLoading={() => {
@@ -62,6 +86,15 @@ export default function Home() {
           {!isLoading && <Footer changeCursorTo={changeCursorTo} />}
         </>
       </>
+    );
+  };
+
+  return (
+    <Page>
+      <Head>
+        <title>Magical Ball of Excuses</title>
+      </Head>
+      {isLandscape ? <MainLayout /> : <WrongDeviceScreen />}
     </Page>
   );
 }

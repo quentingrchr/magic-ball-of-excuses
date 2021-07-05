@@ -6,9 +6,9 @@ export default function WrongDeviceScreen() {
       <Content>
         <Text>
           <p>
-            Oops, looks like you're using a mobile device.
+            {"Oops, looks like you're using a mobile device."}
             <br />
-            <em>Please rotate your device</em>
+            <em>{"Please rotate your device"}</em>
           </p>
         </Text>
       </Content>

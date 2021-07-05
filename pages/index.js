@@ -21,8 +21,7 @@ export default function Home() {
   const [cursorType, setCursorType] = useState("default");
   const [isLoading, setIsLoading] = useState(false);
   const [isLandscape, setIsLandscape] = useState(null);
-
-  useEffect(() => {}, []);
+  const [isTouchDevice, setIsTouchDevice] = useState(null);
 
   const changeCursorTo = (type) => {
     setCursorType(type);
@@ -42,13 +41,15 @@ export default function Home() {
 
   useEffect(() => {
     // Init isLandscape state
-
     initIsLandscape();
 
-    window.addEventListener("resize", initIsLandscape);
-
-    // Init IsLoading state
+    // Init isLoading state
     setIsLoading(true);
+
+    // Init isTouchDevice
+    setIsTouchDevice(matchMedia("(hover: none)").matches);
+
+    //Event listeners
 
     return () => {
       window.removeEventListener("resize", initIsLandscape);
@@ -63,38 +64,36 @@ export default function Home() {
     }
   }, [isLoading]);
 
-  const MainLayout = () => {
-    return (
-      <>
-        <LoadingScreen
-          completeLoading={() => {
-            setIsLoading(false);
-          }}
-          from={0}
-          to={100}
-          isLoading={isLoading}
-        />
-        <>
-          <Cursor cursorType={cursorType} />
-          <BannerWithNoSSR
-            setCursorType={setCursorType}
-            isLoading={isLoading}
-            lockScroll={() => {
-              setIsScrollLocked(true);
-            }}
-          />
-          {!isLoading && <Footer changeCursorTo={changeCursorTo} />}
-        </>
-      </>
-    );
-  };
-
   return (
     <Page>
       <Head>
         <title>Magical Ball of Excuses</title>
       </Head>
-      {isLandscape ? <MainLayout /> : <WrongDeviceScreen />}
+      {isLandscape ? (
+        <>
+          <LoadingScreen
+            completeLoading={() => {
+              setIsLoading(false);
+            }}
+            from={0}
+            to={100}
+            isLoading={isLoading}
+          />
+          <>
+            {!isTouchDevice && <Cursor cursorType={cursorType} />}
+            <BannerWithNoSSR
+              setCursorType={setCursorType}
+              isLoading={isLoading}
+              lockScroll={() => {
+                setIsScrollLocked(true);
+              }}
+            />
+            {!isLoading && <Footer changeCursorTo={changeCursorTo} />}
+          </>
+        </>
+      ) : (
+        <WrongDeviceScreen />
+      )}
     </Page>
   );
 }

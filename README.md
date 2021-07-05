@@ -8,7 +8,7 @@ Magical ball of excuses is a side project website from the design of [Michael Cr
 
 ## Why
 
-The design and challenge for the front-end integration really inspired.
+The design and challenge for the front-end integration really inspired me.
 
 ## How
 

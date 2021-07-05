@@ -20,7 +20,7 @@ const Page = styled.div`
 export default function Home() {
   const [cursorType, setCursorType] = useState("default");
   const [isLoading, setIsLoading] = useState(false);
-  const [isLandscape, setIsLandscape] = useState(null);
+  const [isLandscape, setIsLandscape] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(null);
 
   const changeCursorTo = (type) => {

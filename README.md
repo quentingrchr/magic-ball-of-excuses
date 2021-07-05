@@ -1,6 +1,6 @@
 # 🎱 🔮 Magical Ball of Excuses
 
-# WIP - online soon
+# [Visit website](https://magic-ball-of-excuses.vercel.app)
 
 ## What
 

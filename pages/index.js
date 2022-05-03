@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styled from "styled-components";
 import dynamic from "next/dynamic";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import disableScroll from "disable-scroll";
 
 import Footer from "../components/Footer/Footer";
@@ -39,7 +39,7 @@ export default function Home() {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     // Init isLandscape state
     initIsLandscape();
 

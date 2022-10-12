@@ -32,7 +32,6 @@ export const MovinTextContainer = styled(motion.div)`
 
 export const MovinTextWrapper = styled(motion.div)`
   font-size: 12rem;
-  overflow: scroll;
   width: fit-content;
   display: flex;
   flex-direction: column;

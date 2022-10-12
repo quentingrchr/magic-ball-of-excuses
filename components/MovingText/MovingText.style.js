@@ -36,4 +36,5 @@ export const MovinTextWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 4rem;
+  overflow: scroll;
 `;

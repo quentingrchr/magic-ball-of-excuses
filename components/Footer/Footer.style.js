@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 export const FooterContainer = styled(motion.footer)`
   width: 100%;
   margin: auto;
-  max-width: 1900px;
   font-family: "Degular Display Light";
   text-transform: uppercase;
   font-size: 2rem;
